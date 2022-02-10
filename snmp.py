@@ -19,15 +19,8 @@ class S:
                                 DestHost=dest_host,
                                 Community=community)
         vars = netsnmp.VarList(*tuple(netsnmp.Varbind(i) for i in vs))
-        vals = sess.get(vars)
+        sess.get(vars)
         print(S.conv(vars=vars))
-
-        # res = netsnmp.snmpget(*tuple(netsnmp.Varbind(i) for i in vs),
-        #                         Version = ver_snmp,
-        #                         DestHost=dest_host,
-        #                         Community=community)
-        # print(S.conv(res))
-        # print(f"  v{ver_snmp} snmpget result: ", res, )
 
     def snmp_v3_get(*vs: str, dest_host:str, sec_level:str,
                 sec_name:str, priv_pass:str, auth_pass:str,
@@ -43,7 +36,7 @@ class S:
                             PrivProto = priv_proto)
         sess.UseSprintValue = 1
         vars = netsnmp.VarList(*tuple(netsnmp.Varbind(i) for i in vs))
-        vals = sess.get(vars)
+        sess.get(vars)
         print(S.conv(vars=vars))
 
 
